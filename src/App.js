@@ -21,7 +21,8 @@ class App extends Component {
         { name: 'Pau', age: 22},
         { name: 'Nuria', age: 23},
         { name: 'Manu', age: 29}
-      ]
+      ],
+      showPersons: false
     })
   }
 
@@ -36,14 +37,27 @@ class App extends Component {
     })
   }
 
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons; //primero vale false, se cambia el estado a true y al pulsar el botón se vuelve a comprobar la condición.
+    this.setState ({
+      showPersons: !doesShow
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <h1> Hi, I´m a React App </h1>
+        <button onClick={this.togglePersonsHandler}>Toogle Persons</button>
+        
+        { this.state.showPersons ? 
+          <div>
         <button onClick={this.switchNameHandler}>Change name</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My hobbies: Fishing</Person>
         <Person changed={this.nameChangedHandler} name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+        </div> : null }
+
       </div>
     );
   }
