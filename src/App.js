@@ -43,20 +43,25 @@ class App extends Component {
       showPersons: !doesShow
     })
   }
-
+  
   render() {
-    return (
-      <div className="App">
-        <h1> Hi, I´m a React App </h1>
-        <button onClick={this.togglePersonsHandler}>Toogle Persons</button>
-        
-        { this.state.showPersons ? 
-          <div>
+    let persons = null;
+    if (this.state.showPersons) {
+     persons = ( 
+     <div>
         <button onClick={this.switchNameHandler}>Change name</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My hobbies: Fishing</Person>
         <Person changed={this.nameChangedHandler} name={this.state.persons[2].name} age={this.state.persons[2].age}/>
-        </div> : null }
+     </div> )
+    }
+
+    return (
+      <div className="App">
+        <h1> Hi, I´m a React App </h1>
+        <button onClick={this.togglePersonsHandler}>Toogle Persons</button>
+        {persons}
+        
 
       </div>
     );
