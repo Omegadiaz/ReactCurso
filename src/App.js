@@ -43,15 +43,14 @@ class App extends Component {
     if (this.state.showPersons) {
      persons = (
      <div>
-     {this.state.persons.map((person, index) => {
-       return <Person
-       click={this.deletePersonHandler}
-       key={person.key}
-       name={person.name}
-       age={person.age}
+      {this.state.persons.map((person, index) => {
+        return <Person
+        click={() => this.deletePersonHandler(index)}
+        key={person.key}
+        name={person.name}
+        age={person.age}
        />
-     })}
-        <button onClick={this.switchNameHandler}>Change name</button>
+      })}
         
      </div> )
     }
