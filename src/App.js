@@ -6,24 +6,17 @@ class App extends Component {
 
   state = {
     persons: [
-      { name: 'Gabriel', age: 29},
-      { name: 'Nuria', age: 23},
-      { name: 'Manu', age: 29}
+      { name: 'Max', age: 28},
+      { name: 'Manu', age: 29},
+      { name: 'Stephanie', age: 26}
     ],
     Otras_cosas: []
   }
 
-  switchNameHandler = () => {
-    //console.log('Was clicked!');
-    //DON´T DO THIS this.state.persons[0].name = 'Pau';
-    this.setState({ //Se actualiza el estado por lo que haya cambiado solamente
-      persons: [
-        { name: 'Pau', age: 22},
-        { name: 'Nuria', age: 23},
-        { name: 'Manu', age: 29}
-      ],
-      showPersons: false
-    })
+  deletePersonHandler = (personIndex) =>{
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons})
   }
 
   nameChangedHandler = (event) => {
@@ -47,12 +40,17 @@ class App extends Component {
   render() {
     let persons = null;
     if (this.state.showPersons) {
-     persons = ( 
+     persons = (
      <div>
+     {this.state.persons.map((person, index) => {
+       return <Person
+       click={this.deletePersonHandler}
+       name={person.name}
+       age={person.age}
+       />
+     })}
         <button onClick={this.switchNameHandler}>Change name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My hobbies: Fishing</Person>
-        <Person changed={this.nameChangedHandler} name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+        
      </div> )
     }
 
