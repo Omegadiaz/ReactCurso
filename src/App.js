@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium , { StyleRoot } from 'radium';
 import Person from './Person/Person'
 
 class App extends Component {
@@ -60,25 +59,25 @@ class App extends Component {
 
     let persons = null;
     if (this.state.showPersons) {
-     persons = (
-     <div>
-      {this.state.persons.map((person, index) => {
-        return <Person
-        click={() => this.deletePersonHandler(index)}
-        key={person.id}
-        name={person.name}
-        age={person.age}
-        changed={(event) => this.nameChangedHandler(event, person.id)}
-       />
-      })}
-        
-     </div> 
-     )
-     style.backgroundColor = 'red';
-     style[':hover'] = {
-       backgroundColor: 'salmon',
-       color: 'black'
-     }
+      persons = (
+      <div>
+        {this.state.persons.map((person, index) => {
+          return <Person
+          click={() => this.deletePersonHandler(index)}
+          key={person.id}
+          name={person.name}
+          age={person.age}
+          changed={(event) => this.nameChangedHandler(event, person.id)}
+        />
+        })}
+          
+      </div> 
+      )
+          style.backgroundColor = 'red';
+          style[':hover'] = {
+            backgroundColor: 'salmon',
+            color: 'black'
+          }
     };
     
     const classes = [' '];
@@ -91,7 +90,7 @@ class App extends Component {
 
 
     return (
-      <StyleRoot>
+      
       <div className="App">
         <h1> Hi, I´m a React App </h1>
         <p className={classes.join(' ')}> This is really working!</p>
@@ -100,9 +99,9 @@ class App extends Component {
         
 
       </div>
-      </StyleRoot>
+      
     );
   }
 }
 
-export default Radium(App);
+export default App;
