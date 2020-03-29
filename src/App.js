@@ -1,22 +1,7 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import './App.css';
-import Person from './Person/Person'
-
-const StyledButton = styled.button`
-      background-color: ${props => props.alt ? 'red' : 'green'}; //Si hay showPersons es ROJO, si no hay es VERDE
-      color: white;
-      font: inherit;
-      border: 1px solid blue;
-      padding: 8px;
-      cursor: pointer;
-
-        &:hover {
-          background-color: ${props => props.alt ? 'salmon' : 'lightgreen'}; //Si hay showPersons es LG, si no hay es SALMON
-          color: black
-        }
-
-`;
+import classesCSS from './App.css';
+import Person from './Person/Person';
+      
 
 class App extends Component {
 
@@ -60,18 +45,7 @@ class App extends Component {
   }
   
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'Lightgreen',
-        color: 'black'
-      }
-    };
+    let btnClass = [classesCSS.Button];
 
     let persons = null;
     if (this.state.showPersons) {
@@ -89,28 +63,25 @@ class App extends Component {
           
       </div> 
       )
-      /*    style.backgroundColor = 'red';
-          style[':hover'] = {
-            backgroundColor: 'salmon',
-            color: 'black'
-          }*/
+      
+      btnClass.push(classesCSS.Red);
     };
     
-    const classes = [' '];
+    const AssignedClasses = [' '];
     if (this.state.persons.length <= 2){
-      classes.push('red'); //classes ['red]
+      AssignedClasses.push(classesCSS.red); //classes ['red]
     }
     if (this.state.persons.length <= 1){
-      classes.push('bold'); //classes ['red]
+      AssignedClasses.push(classesCSS.bold); //classes ['red]
     }
 
 
     return (
       
-      <div className="App">
+      <div className={classesCSS.App}>
         <h1> Hi, I´m a React App </h1>
-        <p className={classes.join(' ')}> This is really working!</p>
-        <StyledButton alt={this.state.showPersons} onClick={this.togglePersonsHandler}>Toogle Persons</StyledButton>
+        <p className={AssignedClasses.join(' ')}> This is really working!</p>
+        <button className={btnClass.join(' ')} alt={this.state.showPersons} onClick={this.togglePersonsHandler}>Toogle Persons</button>
         {persons}
         
 
